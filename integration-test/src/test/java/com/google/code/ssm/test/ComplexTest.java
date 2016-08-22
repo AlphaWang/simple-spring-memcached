@@ -54,116 +54,14 @@ public class ComplexTest {
             }
         }
 
-        List<Integer> userIds = appUserService.getUserIdsList(1, Arrays.asList(1, 2, 3, 4, 5, 88, 66, 55, 44, 33, 11, 12, 13, 14));
-        assertEquals(userIds.size(), 9);
+        List<AppUser> userIds = appUserService.getInstalledList(20, Arrays.asList(1, 5, 7, 8));
 
-        userIds = appUserService.getUserIdsList(6, Arrays.asList(3, 4, 5, 1, 2, 88, 66, 55, 44, 33, 13, 14, 15, 11, 12));
-        assertEquals(userIds.size(), 5);
+//        assertEquals(userIds.size(), 4);
 
-        List<AppUser> appUsers = appUserService.getList(20, true);
-        assertEquals(20, appUsers.size());
+        userIds = appUserService.getInstalledList(20, Arrays.asList(1, 5, 7, 8));
+        assertEquals(userIds.size(), 4);
 
-        appUsers = appUserService.getList(20, false);
-        assertEquals(0, appUsers.size());
 
-        appUsers = appUserService.getInstalledList(20, Arrays.asList(1, 5, 7, 8, 100, 2, 3, 4, 6, 11, 55, 77, 88));
-        assertEquals(9, appUsers.size());
-
-        appUsers = appUserService.getInstalledList(20, Arrays.asList(17, 1, 5, 16, 12, 13, 7, 8, 100, 2, 3, 4, 15, 6, 11, 55, 18, 77, 88));
-        assertEquals(15, appUsers.size());
-
-        for (int i = 1; i <= 20; i++) {
-            assertEquals(i, appUserService.get(20, i).getApplicationId());
-            ;
-        }
-
-        appUsers = appUserService.getInstalledList(15, Arrays.asList(1, 2, 8, 9, 100, 13, 14, 55, 77, 88));
-        assertEquals(6, appUsers.size());
-
-        appUsers = appUserService.getInstalledList(15, Arrays.asList(1, 2, 8, 9, 13, 14));
-        assertEquals(6, appUsers.size());
-
-        appUsers = appUserService.getInstalledList(15, Arrays.asList(5, 7, 1, 2, 8, 15, 3, 4, 9, 13, 14));
-        assertEquals(11, appUsers.size());
-
-        for (int i = 1; i <= 15; i++) {
-            assertEquals(i, appUserService.get(15, i).getApplicationId());
-        }
-
-        appUsers = appUserService.getInstalledList(10, Arrays.asList(4, 5, 1));
-        assertEquals(3, appUsers.size());
-
-        appUsers = appUserService.getInstalledList(10, Arrays.asList(2, 9, 4, 5, 1, 7));
-        assertEquals(6, appUsers.size());
-
-        appUsers = appUserService.getInstalledList(10, Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
-        assertEquals(10, appUsers.size());
-
-        for (int i = 1; i <= 10; i++) {
-            assertEquals(i, appUserService.get(10, i).getApplicationId());
-            ;
-        }
-
-        for (int i = 1; i <= 20; i++) {
-            for (int j = 1; j < i; j++) {
-                appUserService.disableAppForUser(i, j);
-            }
-        }
-
-        appUsers = appUserService.getInstalledList(10, Arrays.asList(4, 5, 1));
-        assertEquals(0, appUsers.size());
-
-        appUsers = appUserService.getInstalledList(10, Arrays.asList(2, 9, 4, 5, 1, 7));
-        assertEquals(0, appUsers.size());
-
-        appUsers = appUserService.getInstalledList(10, Arrays.asList(2, 9, 33, 44, 55, 4, 5, 3, 1, 77, 22, 7));
-        assertEquals(0, appUsers.size());
-
-        appUsers = appUserService.getInstalledList(10, Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
-        assertEquals(1, appUsers.size());
-
-        for (int i = 1; i <= 10; i++) {
-            assertEquals(i, appUserService.get(10, i).getApplicationId());
-        }
-
-        userIds = appUserService.getUserIdsList(1, Arrays.asList(1, 2, 3, 4, 5, 88, 66, 55, 44, 33, 11, 12, 13, 14));
-        assertEquals(userIds.size(), 1);
-
-        userIds = appUserService.getUserIdsList(2, Arrays.asList(1, 2, 3, 4, 5, 88, 66, 55, 44, 33, 11, 12, 13, 14));
-        assertEquals(1, userIds.size());
-
-        userIds = appUserService.getUserIdsList(6, Arrays.asList(3, 4, 5, 1, 2, 88, 66, 55, 44, 33, 13, 14, 15, 11, 12));
-        assertEquals(0, userIds.size());
-
-        appUsers = appUserService.getList(20, true);
-        assertEquals(1, appUsers.size());
-
-        appUsers = appUserService.getList(20, false);
-        assertEquals(19, appUsers.size());
-
-        appUsers = appUserService.getInstalledList(20, Arrays.asList(1, 5, 7, 8, 100, 2, 3, 4, 6, 11, 55, 77, 88));
-        assertEquals(0, appUsers.size());
-
-        for (int i = 1; i <= 20; i++) {
-            for (int j = 1; j < i; j++) {
-                appUserService.enableAppForUser(i, j, false);
-            }
-        }
-
-        userIds = appUserService.getUserIdsList(1, Arrays.asList(1, 2, 3, 4, 5, 88, 66, 55, 44, 33, 11, 12, 13, 14));
-        assertEquals(userIds.size(), 9);
-
-        userIds = appUserService.getUserIdsList(6, Arrays.asList(3, 4, 5, 1, 2, 88, 66, 55, 44, 33, 13, 14, 15, 11, 12));
-        assertEquals(userIds.size(), 5);
-
-        appUsers = appUserService.getList(20, true);
-        assertEquals(20, appUsers.size());
-
-        appUsers = appUserService.getList(20, false);
-        assertEquals(0, appUsers.size());
-
-        appUsers = appUserService.getInstalledList(20, Arrays.asList(1, 5, 7, 8, 100, 2, 3, 4, 6, 11, 55, 77, 88));
-        assertEquals(9, appUsers.size());
     }
 
 }

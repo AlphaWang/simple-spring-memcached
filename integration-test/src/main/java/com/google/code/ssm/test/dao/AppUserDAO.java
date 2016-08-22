@@ -46,7 +46,7 @@ public interface AppUserDAO {
      *            sorted list of applications' IDs in ASC order
      * @return list of entities
      */
-    List<AppUser> getList(int userId, List<Integer> appsIds);
+    List<AppUser> getList(List<Integer> appsIds, int userId,  String type);
 
     /**
      * 

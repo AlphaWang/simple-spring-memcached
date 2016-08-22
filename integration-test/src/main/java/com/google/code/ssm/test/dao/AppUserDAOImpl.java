@@ -109,8 +109,10 @@ public class AppUserDAOImpl implements AppUserDAO {
 
     @Override
     @ReadThroughMultiCache(namespace = SINGLE_NS, expiration = 0, option = @ReadThroughMultiCacheOption(generateKeysFromResult = true))
-    public List<AppUser> getList(@ParameterValueKeyProvider(order = 0) int userId,
-            @ParameterValueKeyProvider(order = 1) final List<Integer> appsIds) {
+    public List<AppUser> getList(
+        @ParameterValueKeyProvider(order = 0) final List<Integer> appsIds,
+        @ParameterValueKeyProvider(order = 1) int userId,
+            @ParameterValueKeyProvider(order = 2) String type) {
         List<AppUser> list = new ArrayList<AppUser>();
         for (Integer appId : appsIds) {
             AppUser au = MAP.get(new AppUserPK(userId, appId));

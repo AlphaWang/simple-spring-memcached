@@ -104,7 +104,7 @@ public class AppUserServiceImpl implements AppUserService {
     @Override
     public List<AppUser> getInstalledList(final int userId, final List<Integer> applicationsIds) {
         Collections.sort(applicationsIds);
-        List<AppUser> applicationUsers = getDao().getList(userId, applicationsIds);
+        List<AppUser> applicationUsers = getDao().getList(applicationsIds, userId,  "Test");
 
         Iterator<AppUser> iter = applicationUsers.iterator();
         AppUser appUser = null;
@@ -122,13 +122,13 @@ public class AppUserServiceImpl implements AppUserService {
     public List<AppUser> getList(final int userId) {
         List<Integer> appsIds = getDao().getAppIdList(userId, true);
         appsIds.addAll(getDao().getAppIdList(userId, false));
-        return getDao().getList(userId, getUniqueSortedList(appsIds));
+        return getDao().getList(getUniqueSortedList(appsIds), userId,  "Test1");
     }
 
     @Override
     public List<AppUser> getList(final int userId, final boolean authorized) {
         List<Integer> appsIds = getUniqueSortedList(getDao().getAppIdList(userId, authorized));
-        List<AppUser> appUsers = getDao().getList(userId, appsIds);
+        List<AppUser> appUsers = getDao().getList(appsIds, userId, "Test2");
         removeWithDifferentAuth(appUsers, authorized);
         return appUsers;
     }

@@ -140,7 +140,7 @@ public class AppUser implements Externalizable {
 
     @CacheKeyMethod
     public String cacheKey() {
-        return userId + "/" + applicationId;
+        return applicationId + "/" + userId + "/" + "Test";
     }
 
     public AppUserPK getPK() {
